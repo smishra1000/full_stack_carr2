@@ -1,10 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function CrudDemo() {
     const [firstname, setFirstName] = useState("")
     const [lastname, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [users, setUsers] = useState([])
+
+    useEffect(()=>{
+        fetch("http://localhost:4000/user").then(function(res){
+            return res.json()
+        }).then(function(data){
+            console.log("data recieved from node server",data)
+            setUsers((users) => [...users,...data])
+        })
+    },[])
 
     const onFirstNameChange = (e) => {
         setFirstName(e.target.value)
@@ -31,12 +40,21 @@ function CrudDemo() {
     }
 
     const deleteUser = (e,user)=>{
-        console.log("user deliting",user)
-        let filteredUser = users.filter(function(item){
-            return item.email!==user.email;
-        })
-
-        setUsers(filteredUser)
+        e.preventDefault();
+        const deleteMethod = {
+            method: 'DELETE', // Method itself
+            headers: {
+             'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+            },
+            // No need to have body, because we don't send nothing to the server.
+           }
+           // Make the HTTP Delete call using fetch api
+           fetch(`http://localhost:4000/user/${user.id}`, deleteMethod) 
+           .then(response => response.json()).then((data)=>{
+            setUsers(data)
+           }).catch((err)=>{
+                console.log(err)
+           })
     }
     const editUser = (e,user)=>{
         console.log(user)
@@ -86,7 +104,7 @@ function CrudDemo() {
             <div className="row" style={{marginTop:'10px'}}>
                 {users.map((user,index) => {
                     return (
-                        <div className="col-md-3" key={index}>
+                        <div className="col-md-3" key={user.id}>
                             <div className="card" style={{ width: '18rem' }}>
                                 <img src={process.env.PUBLIC_URL+"user-profile.jpg"} className="" alt="..." style={{ height: '100px !important' }} />
                                 <div className="card-body">

@@ -1,0 +1,23 @@
+html js css bootstrap react 
+
+frontend app 
+
+
+backend--nodejs,express,mongodb
+
+nodejs---
+
+
+nodejs is server side run time env for javascript 
+
+client/frontend                    server/backend                                 database
+
+
+html,css bootstrap,js react         nodejs,express,mongo 
+request
+-----------------------------------> --------------------------------------------->
+
+response
+<--------------------------------------    <--------------------------------------
+
+req res model
