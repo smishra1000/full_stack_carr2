@@ -24,6 +24,9 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="course-list">Course list</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="frontendbackend">FrontendBackendSetup</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

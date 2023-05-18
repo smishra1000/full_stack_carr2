@@ -18,6 +18,7 @@ import UseEffectHook from './react-recap/AllHooks/UseEffectHook';
 import UseRefHook from './react-recap/AllHooks/UseRefHook';
 import Course from './components/pages/Course';
 import CourseList from './components/pages/CourseList';
+import FrontendBackendSetup from './components/pages/FrontEndBackendSetup';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Route path="/lifecycle" element={<Lifecycle/>}></Route>
       <Route path="/course" element={<Course/>}></Route>
       <Route path="/course-list" element={<CourseList/>}></Route>
+      <Route path="/frontendbackend" element={<FrontendBackendSetup/>}></Route>
       <Route path="/" element={<Dashboard/>}></Route>
      </Routes>
      </BrowserRouter>
